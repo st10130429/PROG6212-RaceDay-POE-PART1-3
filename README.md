@@ -32,4 +32,4 @@ CI/CD
 
 ## Video Presentation
 
-Unlisted YouTube video
+Unlisted YouTube video : https://youtube.com/shorts/F4agopCYtyE?si=H3vubnEVB5zB2BVE
