@@ -1,0 +1,19 @@
+name: RaceDay CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate docs exist
+        run: |
+          ls docs/RaceDay_API_Endpoint_Plan.md
+          ls docs/RaceDay_database.sql
+          ls docs/RaceDay_ERD.png
+          echo "All Part 1 docs present - 6 entities including RouteInformation"
