@@ -1,0 +1,29 @@
+@model ResultsEntryVm
+@{ ViewData["Title"] = "Results"; }
+<h1>Results: @Model.Event.Name</h1>
+<p class="text-muted">Enter finish times (hh:mm:ss) and finishing positions after the event concludes. Results are published to participants immediately.</p>
+<div class="card"><table class="table align-middle mb-0"><thead><tr><th>Participant</th><th>Category</th><th>Finish time</th><th>Position</th><th></th></tr></thead><tbody>
+@foreach (var e in Model.Entrants)
+{
+    if (e.HasResult)
+    {
+        <tr><td>@e.ParticipantName</td><td>@e.CategoryName</td><td>@e.FinishTime?.ToString(@"hh\:mm\:ss")</td><td>@e.Position</td><td><span class="badge bg-success">Published</span></td></tr>
+    }
+    else
+    {
+        <tr>
+            <td>@e.ParticipantName</td><td>@e.CategoryName</td>
+            <td><input form="f-@e.EnrolmentId" name="finishTime" class="form-control form-control-sm" placeholder="00:48:32" required /></td>
+            <td><input form="f-@e.EnrolmentId" name="position" type="number" min="1" class="form-control form-control-sm" required /></td>
+            <td>
+                <form id="f-@e.EnrolmentId" asp-action="SaveResult" method="post">
+                    <input type="hidden" name="eventId" value="@Model.Event.EventId" /><input type="hidden" name="enrolmentId" value="@e.EnrolmentId" />
+                    <button class="btn btn-sm btn-rd">Publish</button>
+                </form>
+            </td>
+        </tr>
+    }
+}
+@if (!Model.Entrants.Any()) { <tr><td colspan="5" class="text-muted">No enrolled participants.</td></tr> }
+</tbody></table></div>
+<a class="btn btn-link mt-3" asp-action="Events">&larr; Back to events</a>

@@ -1,0 +1,14 @@
+@model ResultsEntryVm
+@{ ViewData["Title"] = "Enrolments"; }
+<h1>Enrolments: @Model.Event.Name</h1>
+<div class="card"><table class="table align-middle mb-0"><thead><tr><th>Participant</th><th>Email</th><th>Category</th><th>Status</th><th></th></tr></thead><tbody>
+@foreach (var e in Model.Entrants)
+{
+    <tr><td>@e.ParticipantName</td><td>@e.ParticipantEmail</td><td>@e.CategoryName</td><td><partial name="_StatusBadge" model="e.Status" /></td>
+    <td class="text-end">
+        @if (e.Status != "Confirmed") { <form asp-action="SetStatus" method="post" class="d-inline"><input type="hidden" name="eventId" value="@Model.Event.EventId" /><input type="hidden" name="enrolmentId" value="@e.EnrolmentId" /><input type="hidden" name="status" value="Confirmed" /><button class="btn btn-sm btn-outline-success">Confirm</button></form> }
+    </td></tr>
+}
+@if (!Model.Entrants.Any()) { <tr><td colspan="5" class="text-muted">No participants have enrolled yet.</td></tr> }
+</tbody></table></div>
+<a class="btn btn-link mt-3" asp-action="Events">&larr; Back to events</a>

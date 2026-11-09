@@ -1,0 +1,17 @@
+@model List<DashboardItemDto>
+@{ ViewData["Title"] = "My Events"; }
+<div class="d-flex justify-content-between align-items-center mb-3"><h1>My events</h1><a class="btn btn-rd" asp-action="CreateEvent">New event</a></div>
+<div class="card"><table class="table align-middle mb-0"><thead><tr><th>Event</th><th>Date</th><th>Location</th><th>Enrolments</th><th></th></tr></thead><tbody>
+@foreach (var e in Model)
+{
+    <tr><td>@e.Name</td><td>@e.EventDate.ToString("dd MMM yyyy")</td><td>@e.Location</td><td>@e.EnrolmentCount</td>
+    <td class="text-end">
+        <a class="btn btn-sm btn-outline-dark" asp-action="EditEvent" asp-route-id="@e.EventId">Edit</a>
+        <a class="btn btn-sm btn-outline-dark" asp-action="Categories" asp-route-eventId="@e.EventId">Categories</a>
+        <a class="btn btn-sm btn-outline-dark" asp-action="Enrolments" asp-route-eventId="@e.EventId">Enrolments</a>
+        <a class="btn btn-sm btn-outline-dark" asp-action="Results" asp-route-eventId="@e.EventId">Results</a>
+        <form asp-action="DeleteEvent" asp-route-id="@e.EventId" method="post" class="d-inline" onsubmit="return confirm('Delete this event and its categories?');"><button class="btn btn-sm btn-outline-danger">Delete</button></form>
+    </td></tr>
+}
+@if (!Model.Any()) { <tr><td colspan="5" class="text-muted">You haven't created any events yet.</td></tr> }
+</tbody></table></div>
