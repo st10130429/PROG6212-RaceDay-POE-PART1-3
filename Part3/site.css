@@ -1,0 +1,14 @@
+:root { --rd-orange:#ff5a1f; --rd-dark:#14171c; --rd-lime:#c6f432; --rd-bg:#f5f6f8; }
+body { font-family:'Inter',system-ui,sans-serif; background:var(--rd-bg); color:#1d2127; }
+h1,h2,h3,.rd-h,.rd-brand { font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.03em; font-weight:700; }
+.rd-nav { background:var(--rd-dark); border-bottom:4px solid var(--rd-orange); }
+.rd-brand { font-size:1.8rem; color:#fff !important; } .rd-brand span { color:var(--rd-orange); }
+.btn-rd { background:var(--rd-orange); border-color:var(--rd-orange); color:#fff; font-weight:600; }
+.btn-rd:hover { background:#e04a12; border-color:#e04a12; color:#fff; }
+.card { border:0; box-shadow:0 2px 10px rgba(0,0,0,.08); border-radius:.75rem; }
+.event-banner { height:160px; object-fit:cover; border-radius:.75rem .75rem 0 0; background:linear-gradient(135deg,var(--rd-dark),var(--rd-orange)); width:100%; }
+.hero-banner { max-height:320px; object-fit:cover; width:100%; border-radius:.75rem; }
+.avatar { width:96px; height:96px; border-radius:50%; object-fit:cover; border:3px solid var(--rd-orange); }
+.rd-footer { background:var(--rd-dark); color:#9aa3ad; font-size:.85rem; margin-top:2rem; }
+.table thead { background:var(--rd-dark); color:#fff; }
+.stat { font-family:'Barlow Condensed',sans-serif; font-size:2.4rem; color:var(--rd-orange); line-height:1; }
